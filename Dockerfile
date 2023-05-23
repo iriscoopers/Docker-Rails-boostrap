@@ -1,9 +1,10 @@
 # syntax=docker/dockerfile:1
 FROM ruby:3.2.2
 RUN apt-get update -qq && apt-get install -y postgresql-client
-WORKDIR /www/app/
-COPY Gemfile /www/app/Gemfile
-COPY Gemfile.lock /www/app/Gemfile.lock
+WORKDIR /app
+COPY Gemfile* .
+COPY template.rb .
+
 RUN bundle install
 
 # Add a script to be executed every time the container starts.
